@@ -54,7 +54,7 @@
                             </button>
                         </div>
                         <div class="p-6 space-y-6">
-                            <form class="space-y-6" action="/" method="POST">
+                            <form class="space-y-6" action="/auth/login" method="POST">
                                 @csrf
                                 <div>
                                     <label for="email"
