@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserType;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\DonorDetails;
 use App\Models\User;
@@ -74,5 +75,19 @@ class AuthController extends Controller
         $donorDetails->save();
 
         return redirect()->back();
+    }
+
+    public function profile(ProfileRequest $request)
+    {
+        $user = User::find(Auth::id());
+        $user->phone = $request->input('phone');
+        $user->password = bcrypt($request->input('password'));
+        $user->update();
+
+        if (Auth::user()->type == UserType::COLLECTOR->value) {
+            return redirect('/collector/settings');
+        } else {
+            return redirect('/donor/settings');
+        }
     }
 }

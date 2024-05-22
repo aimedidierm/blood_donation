@@ -16,8 +16,12 @@ Route::group(["prefix" => "auth", "as" => "auth."], function () {
 
 Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::get('/', [DashboardController::class, 'collectorDashboard']);
+    Route::view('/settings', 'auth.settings');
+    Route::put('/settings', [AuthController::class, 'profile']);
 })->middleware([CollectorMiddleware::class, 'auth']);
 
 Route::group(["prefix" => "donor", "as" => "donor."], function () {
     Route::get('/', [DashboardController::class, 'donorDashboard']);
+    Route::view('/settings', 'auth.settings');
+    Route::put('/settings', [AuthController::class, 'profile']);
 })->middleware([DonorMiddleware::class, 'auth']);
