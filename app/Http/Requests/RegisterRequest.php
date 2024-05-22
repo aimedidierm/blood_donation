@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserSex;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use ReflectionClass;
 
 class RegisterRequest extends FormRequest
 {
@@ -24,9 +27,10 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string',
             'phone' => 'required|string',
+            'gender' => ['required', 'string', Rule::in(array_values((new ReflectionClass(UserSex::class))->getConstants()))],
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|string',
-            'confirmPassword' => 'required|string',
+            'password' => 'required|string|confirmed',
+            'password_confirmation' => 'required|string',
         ];
     }
 }

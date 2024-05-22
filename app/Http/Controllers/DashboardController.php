@@ -10,4 +10,9 @@ class DashboardController extends Controller
     {
         return view('collector.dashboard');
     }
+
+    public function donorDashboard()
+    {
+        return view('donor.dashboard');
+    }
 }

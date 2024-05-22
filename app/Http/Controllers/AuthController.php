@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Enums\UserType;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Models\DonorDetails;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -23,7 +25,7 @@ class AuthController extends Controller
                 Auth::login($user);
                 if ($user->type == UserType::COLLECTOR->value) {
                     return redirect("/collector");
-                } elseif ($user->role == UserType::DONOR->value) {
+                } elseif ($user->type == UserType::DONOR->value) {
                     return redirect("/donor");
                 } else {
                     return redirect('/')->withErrors(['msg' => 'Invalid user type']);
@@ -45,5 +47,32 @@ class AuthController extends Controller
         } else {
             return back();
         }
+    }
+
+    public function register(RegisterRequest $request)
+    {
+        $donor = new User();
+        $donor->name = $request->input('name');
+        $donor->phone = $request->input('phone');
+        $donor->email = $request->input('email');
+        $donor->type = UserType::DONOR->value;
+        $donor->password = bcrypt($request->input('password'));
+        $donor->save();
+
+        $randomCode = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+        $exists = DonorDetails::where('sn', $randomCode)->exists();
+        while ($exists) {
+            $randomCode = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+            $exists = DonorDetails::where('sn', $randomCode)->exists();
+        }
+
+        $donorDetails = new DonorDetails();
+        $donorDetails->dob = $request->input('dob');
+        $donorDetails->sn = $randomCode;
+        $donorDetails->sex = $request->input('gender');
+        $donorDetails->user_id = $donor->id;
+        $donorDetails->save();
+
+        return redirect()->back();
     }
 }

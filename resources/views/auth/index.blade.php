@@ -100,7 +100,7 @@
                             </button>
                         </div>
                         <div class="p-6 space-y-6">
-                            <form class="space-y-6" action="/register" method="POST">
+                            <form class="space-y-6" action="/auth/register" method="POST">
                                 @csrf
                                 <div>
                                     <label for="names"
@@ -109,14 +109,6 @@
                                     <input type="text" name="name" id="names"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         placeholder="Enter names" required>
-                                </div>
-                                <div>
-                                    <label for="address"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                                        address</label>
-                                    <input type="text" name="address" id="address"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                        placeholder="Enter adress" required>
                                 </div>
                                 <div>
                                     <label for="phone"
@@ -145,6 +137,14 @@
                                         <option value="female">Female</option>
                                     </select>
                                 </div>
+                                <div>
+                                    <label for="dob"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                        Date of Birth</label>
+                                    <input type="date" name="dob" id="dob"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                        required>
+                                </div>
 
                                 <div>
                                     <label for="password"
@@ -156,10 +156,11 @@
                                 </div>
 
                                 <div>
-                                    <label for="password"
+                                    <label for="password_confirmation"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
                                         password</label>
-                                    <input type="password" name="confirmPassword" id="password" placeholder="••••••••"
+                                    <input type="password" name="password_confirmation" id="password_confirmation"
+                                        placeholder="••••••••"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                                         required>
                                 </div>

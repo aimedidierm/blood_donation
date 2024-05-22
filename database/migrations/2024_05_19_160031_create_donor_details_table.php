@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('donor_details', function (Blueprint $table) {
             $table->id();
             $table->date('dob');
-            $table->string('blood_type');
+            $table->string('blood_type')->nullable();
             $table->string('sn')->unique();
             $table->string('sex');
             $table->unsignedBigInteger('user_id');
