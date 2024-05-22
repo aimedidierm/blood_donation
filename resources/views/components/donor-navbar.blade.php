@@ -15,7 +15,7 @@
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul cass="space-y-2 font-medium">
             <li>
-                <a href="/admin"
+                <a href="/donor"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         dashboard
@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/pending"
+                <a href="/chat"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         forum
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li>
-                <a href="/admin/contracts"
+                <a href="/donor/donations"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         bloodtype

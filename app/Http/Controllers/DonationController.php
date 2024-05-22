@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\UserType;
 use App\Models\Donation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
 {
@@ -12,7 +14,14 @@ class DonationController extends Controller
      */
     public function index()
     {
-        //
+        if (Auth::user()->type == UserType::COLLECTOR->value) {
+            # code...
+        } else {
+            $donations = Donation::latest()
+                ->where('user_id', Auth::id())
+                ->get();
+            return view('donor.donations', ['data' => $donations]);
+        }
     }
 
     /**
