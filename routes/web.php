@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Middleware\CollectorMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -12,5 +13,5 @@ Route::group(["prefix" => "auth", "as" => "auth."], function () {
 });
 
 Route::group(["prefix" => "collector", "as" => "collector."], function () {
-    Route::view('/', 'welcome');
+    Route::get('/', [DashboardController::class, 'collectorDashboard']);
 })->middleware([CollectorMiddleware::class, 'auth']);
