@@ -27,7 +27,7 @@ class CollectorsController extends Controller
         $collector->email = $request->input('email');
         $collector->phone = $request->input('phone');
         $collector->type = UserType::COLLECTOR->value;
-        $collector->password = bcrypt($request->input('password'));
+        $collector->password = bcrypt('password');
         $collector->save();
         return redirect('/collector/collectors');
     }
