@@ -16,7 +16,7 @@ class DonorController extends Controller
      */
     public function index()
     {
-        return $donors = User::latest()->where('type', UserType::DONOR->value)->get();
+        $donors = User::latest()->where('type', UserType::DONOR->value)->get();
         $donors->load('details');
         return view('collector.donors', ['data' => $donors]);
     }

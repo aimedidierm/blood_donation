@@ -25,9 +25,9 @@ class AuthController extends Controller
 
                 Auth::login($user);
                 if ($user->type == UserType::COLLECTOR->value) {
-                    return redirect("/collector");
+                    return redirect("/collector/settings");
                 } elseif ($user->type == UserType::DONOR->value) {
-                    return redirect("/donor");
+                    return redirect("/donor/settings");
                 } else {
                     return redirect('/')->withErrors(['msg' => 'Invalid user type']);
                 }

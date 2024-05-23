@@ -14,7 +14,7 @@
     aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul cass="space-y-2 font-medium">
-            <li>
+            {{-- <li>
                 <a href="/collector"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
@@ -22,7 +22,7 @@
                     </span>
                     <span class="ml-3">Dashboard</span>
                 </a>
-            </li>
+            </li> --}}
             <li>
                 <a href="/collector/explore"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -62,12 +62,12 @@
                             Donations
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="/collector/donations"
                             class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/financemanagers') ? 'bg-gray-400 dark:bg-gray-400' : '' }}">
                             Report
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </li>
             <li>

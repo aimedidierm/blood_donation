@@ -33,7 +33,7 @@ Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::post('/donors/update', [DonorController::class, 'update']);
     Route::get('/collectors/delete/{id}', [CollectorsController::class, 'destroy']);
     Route::get('/donors/delete/{id}', [DonorController::class, 'destroy']);
-    Route::get('/donations', [DonationController::class, 'index']);
+    Route::resource('/donations', DonationController::class)->only('index', 'store');
     Route::resource('/explore', StoryController::class)->only('index', 'store');
     Route::get('/explore/delete/{id}', [StoryController::class, 'destroy']);
 })->middleware([CollectorMiddleware::class, 'auth']);

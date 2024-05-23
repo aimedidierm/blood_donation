@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Enums\UserType;
+use App\Http\Requests\DonationRequest;
 use App\Models\Donation;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
@@ -18,7 +19,8 @@ class DonationController extends Controller
             $donations = Donation::latest()
                 ->get();
             $donations->load('user.details');
-            return view('collector.donations', ['data' => $donations]);
+            $donors = User::where('type', UserType::DONOR->value)->get();
+            return view('collector.donations', ['data' => $donations, 'donors' => $donors]);
         } else {
             $donations = Donation::latest()
                 ->where('user_id', Auth::id())
@@ -28,50 +30,14 @@ class DonationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DonationRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Donation $donation)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Donation $donation)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Donation $donation)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Donation $donation)
-    {
-        //
+        $donation = new Donation();
+        $donation->ml = $request->input('ml');
+        $donation->user_id = $request->input('donor');
+        $donation->save();
+        return redirect('/collector/donations');
     }
 }
