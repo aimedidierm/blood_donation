@@ -15,7 +15,10 @@ class DonationController extends Controller
     public function index()
     {
         if (Auth::user()->type == UserType::COLLECTOR->value) {
-            # code...
+            $donations = Donation::latest()
+                ->get();
+            $donations->load('user.details');
+            return view('collector.donations', ['data' => $donations]);
         } else {
             $donations = Donation::latest()
                 ->where('user_id', Auth::id())

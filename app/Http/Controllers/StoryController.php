@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoryRequest;
 use App\Models\Story;
 use Illuminate\Http\Request;
 
@@ -12,54 +13,41 @@ class StoryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $stories = Story::latest()->get();
+        return view('collector.explore', ['data' => $stories]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoryRequest $request)
     {
-        //
-    }
+        $showName = false;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Story $story)
-    {
-        //
-    }
+        if ($request->input('shownames') == 'yes') {
+            $showName = true;
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Story $story)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Story $story)
-    {
-        //
+        $story = new Story();
+        $story->name = $request->input('names');
+        $story->message = $request->input('description');
+        $story->show_name = $showName;
+        $story->save();
+        return redirect('/collector/explore');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Story $story)
+    public function destroy(int $id)
     {
-        //
+        $story = Story::find($id);
+
+        if ($story) {
+            $story->delete();
+            return redirect('/collector/explore');
+        } else {
+            return redirect('/collector/explore')->withErrors('Story not found');
+        }
     }
 }
