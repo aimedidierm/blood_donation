@@ -22,10 +22,6 @@ Route::group(["prefix" => "auth", "as" => "auth."], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 });
 
-Route::get('/chat', function () {
-    return 'Welcom on chat';
-})->middleware('auth');
-
 Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::get('/', [DashboardController::class, 'collectorDashboard']);
     Route::view('/settings', 'auth.settings');
