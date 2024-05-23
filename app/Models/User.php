@@ -49,4 +49,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(DonorDetails::class);
     }
+
+
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
 }

@@ -17,7 +17,6 @@
 </head>
 
 <body>
-
     <nav class="bg-white border-gray-200 dark:bg-gray-900">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
             <a href="#" class="flex items-center">
@@ -221,7 +220,7 @@
             <div class="flex items-center">
                 <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
                     <li>
-                        <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+                        <a href="/" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
                     </li>
                 </ul>
             </div>
@@ -230,105 +229,94 @@
 
     <br>
     <a href="#" class="flex items-center justify-center">
-        <span class="self-center text-3xl font-semibold whitespace-nowrap">Stories</span>
+        <span class="self-center text-3xl font-semibold whitespace-nowrap">Donor details</span>
     </a>
     <br>
-    <div class="p-4">
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            @foreach ($data as $item)
-            <div
-                class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex flex-col items-center pb-10">
-                    <br>
-                    <div class="relative w-40 h-40 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                        <svg class="absolute w-40 h-40 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <br>
-                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-                        @if ($item->show_name)
-                        {{$item->name}}
-                        @else
-                        Anonymous
-                        @endif
-                        - Donor</h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400 p-4">{{$item->message}}</span>
-                </div>
+    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <div class="flex items-center space-x-4">
+            <div class="relative w-24 h-24 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <svg class="absolute w-28 h-228 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                        clip-rule="evenodd"></path>
+                </svg>
             </div>
-            @endforeach
+            <div>
+                <h2 class="text-xl font-bold text-gray-900 dark:text-white">{{$data->user->name}}</h2>
+                <p class="text-gray-600 dark:text-gray-300">Donor ID: {{$data->sn}}</p>
+            </div>
+        </div>
+        <div class="mt-4 space-y-2">
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">Date of Birth:</span> {{$data->dob}}
+            </div>
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">Blood Type:</span> {{$data->blood_type}}
+            </div>
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">Sex:</span> {{$data->sex}}
+            </div>
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">Phone:</span> {{$data->user->phone}}
+            </div>
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">Email:</span> {{$data->user->email}}
+            </div>
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">User Type:</span> Donor
+            </div>
+            <div class="text-gray-900 dark:text-white">
+                <span class="font-medium">Created At:</span> {{$data->user->created_at}}
+            </div>
+        </div>
+        <div class="mt-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white">Donations</h3>
+            <div class="mt-2 space-y-2">
+                @foreach ($data->user->donations as $item)
+                <div class="p-4 bg-gray-100 dark:bg-gray-700 rounded-lg shadow-inner">
+                    <div class="text-gray-900 dark:text-white">
+                        <span class="font-medium">Amount (ml):</span> {{$item->ml}}
+                    </div>
+                    <div class="text-gray-900 dark:text-white">
+                        <span class="font-medium">Date:</span> {{$item->created_at}}
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
-    <br>
-    <footer class="bg-white dark:bg-gray-900">
-        <div class="px-4 py-6 bg-gray-100 dark:bg-gray-700 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024
-                All Rights Reserved.
-            </span>
-            <div class="flex mt-4 space-x-5 sm:justify-center md:mt-0">
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 8 19">
-                        <path fill-rule="evenodd"
-                            d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span class="sr-only">Facebook page</span>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 17">
-                        <path fill-rule="evenodd"
-                            d="M20 1.892a8.178 8.178 0 0 1-2.355.635 4.074 4.074 0 0 0 1.8-2.235 8.344 8.344 0 0 1-2.605.98A4.13 4.13 0 0 0 13.85 0a4.068 4.068 0 0 0-4.1 4.038 4 4 0 0 0 .105.919A11.705 11.705 0 0 1 1.4.734a4.006 4.006 0 0 0 1.268 5.392 4.165 4.165 0 0 1-1.859-.5v.05A4.057 4.057 0 0 0 4.1 9.635a4.19 4.19 0 0 1-1.856.07 4.108 4.108 0 0 0 3.831 2.807A8.36 8.36 0 0 1 0 14.184 11.732 11.732 0 0 0 6.291 16 11.502 11.502 0 0 0 17.964 4.5c0-.177 0-.35-.012-.523A8.143 8.143 0 0 0 20 1.892Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span class="sr-only">Twitter page</span>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M10 .333A9.911 9.911 0 0 0 6.866 19.65c.5.092.678-.215.678-.477 0-.237-.01-1.017-.014-1.845-2.757.6-3.338-1.169-3.338-1.169a2.627 2.627 0 0 0-1.1-1.451c-.9-.615.07-.6.07-.6a2.084 2.084 0 0 1 1.518 1.021 2.11 2.11 0 0 0 2.884.823c.044-.503.268-.973.63-1.325-2.2-.25-4.516-1.1-4.516-4.9A3.832 3.832 0 0 1 4.7 7.068a3.56 3.56 0 0 1 .095-2.623s.832-.266 2.726 1.016a9.409 9.409 0 0 1 4.962 0c1.89-1.282 2.717-1.016 2.717-1.016.366.83.402 1.768.1 2.623a3.827 3.827 0 0 1 1.02 2.659c0 3.807-2.319 4.644-4.525 4.889a2.366 2.366 0 0 1 .673 1.834c0 1.326-.012 2.394-.012 2.72 0 .263.18.572.681.475A9.911 9.911 0 0 0 10 .333Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <span class="sr-only">GitHub account</span>
-                </a>
-            </div>
-        </div>
-    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script>
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
-        var themeToggleBtn = document.getElementById('theme-toggle');
-        themeToggleBtn.addEventListener('click', function() {
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
+            var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                themeToggleLightIcon.classList.remove('hidden');
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                }
+                themeToggleDarkIcon.classList.remove('hidden');
             }
-        });
+            var themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', function() {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
+                } else {
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    }
+                }
+            });
     </script>
 </body>
 

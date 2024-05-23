@@ -7,6 +7,7 @@ use App\Http\Requests\DonorRequest;
 use App\Models\Donation;
 use App\Models\DonorDetails;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class DonorController extends Controller
 {
@@ -15,7 +16,7 @@ class DonorController extends Controller
      */
     public function index()
     {
-        $donors = User::latest()->where('type', UserType::DONOR->value)->get();
+        return $donors = User::latest()->where('type', UserType::DONOR->value)->get();
         $donors->load('details');
         return view('collector.donors', ['data' => $donors]);
     }
@@ -57,5 +58,16 @@ class DonorController extends Controller
         } else {
             return redirect('/collector/donors')->withErrors('Donor account not found');
         }
+    }
+
+    public function verify(Request $request)
+    {
+        $sn = $request->input('sn');
+        $donor = DonorDetails::where('sn', $sn)->first();
+        if (!$donor) {
+            return redirect(route('login'))->withErrors('Donor not found');
+        }
+        $donor->load('user.donations');
+        return view('verify', ['data' => $donor]);
     }
 }

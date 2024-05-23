@@ -22,6 +22,8 @@ Route::group(["prefix" => "auth", "as" => "auth."], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 });
 
+Route::post('/donor-verify', [DonorController::class, 'verify']);
+
 Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::get('/', [DashboardController::class, 'collectorDashboard']);
     Route::view('/settings', 'auth.settings');
