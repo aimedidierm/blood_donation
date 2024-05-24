@@ -71,6 +71,10 @@ class AuthController extends Controller
         $donorDetails->dob = $request->input('dob');
         $donorDetails->sn = $randomCode;
         $donorDetails->sex = $request->input('gender');
+        $donorDetails->province = $request->input('province');
+        $donorDetails->district = $request->input('district');
+        $donorDetails->sector = $request->input('sector');
+        $donorDetails->cell = $request->input('cell');
         $donorDetails->user_id = $donor->id;
         $donorDetails->save();
 
