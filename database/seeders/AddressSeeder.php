@@ -16,14 +16,14 @@ class AddressSeeder extends Seeder
 
             DB::unprepared("
 
-                INSERT INTO 'provinces' ('id', 'name') VALUES
+                INSERT INTO \"provinces\" (\"id\", \"name\") VALUES
                 (1, 'Kigali City'),
                 (2, 'Southern Province'),
                 (3, 'Western Province'),
                 (4, 'Northern Province'),
                 (5, 'Eastern  Province');
 
-                INSERT INTO 'districts' ('id', 'name', 'province_id') VALUES
+                INSERT INTO \"districts\" (\"id\", \"name\", \"province_id\") VALUES
                 ('101', 'NYARUGENGE', '1'),
                 ('102', 'GASABO', '1'),
                 ('103', 'KICUKIRO', '1'),
@@ -55,7 +55,7 @@ class AddressSeeder extends Seeder
                 ('506', 'NGOMA', '5'),
                 ('507', 'BUGESERA', '5');
 
-                INSERT INTO 'sectors' ('id', 'name', 'district_id') VALUES
+                INSERT INTO \"sectors\" (\"id\", \"name\", \"district_id\") VALUES
                 ('10101', 'Gitega', '101'),
                 ('10102', 'Kanyinya', '101'),
                 ('10103', 'Kigali', '101'),
@@ -473,7 +473,7 @@ class AddressSeeder extends Seeder
                 ('50714', 'Rweru', '507'),
                 ('50715', 'Shyara', '507');
 
-                INSERT INTO 'cells' ('id', 'name', 'sector_id') VALUES
+                INSERT INTO \"cells\" (\"id\", \"name\", \"sector_id\") VALUES
                 ('1010101', 'Akabahizi', '10101'),
                 ('1010102', 'Akabeza', '10101'),
                 ('1010103', 'Gacyamo', '10101'),
@@ -1757,7 +1757,7 @@ class AddressSeeder extends Seeder
                 ('4011203', 'Mugote', '40112'),
                 ('4011204', 'Munyarwanda', '40112'),
                 ('4011301', 'Kajevuba', '40113');
-                INSERT INTO 'cells' ('id', 'name', 'sector_id') VALUES
+                INSERT INTO \"cells\" (\"id\", \"name\", \"sector_id\") VALUES
                 ('4011302', 'Kiyanza', '40113'),
                 ('4011303', 'Mahaza', '40113'),
                 ('4011401', 'Buraro', '40114'),
