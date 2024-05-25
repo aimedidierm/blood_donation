@@ -8,7 +8,6 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\DonorDetails;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,13 +28,13 @@ class AuthController extends Controller
                 } elseif ($user->type == UserType::DONOR->value) {
                     return redirect("/donor/settings");
                 } else {
-                    return redirect('/')->withErrors(['msg' => 'Invalid user type']);
+                    return redirect(route('login'))->withErrors(['msg' => 'Invalid user type']);
                 }
             } else {
-                return redirect("/")->withErrors(['msg' => 'Incorect password']);
+                return redirect(route('login'))->withErrors(['msg' => 'Incorect password']);
             }
         } else {
-            return redirect('/')->withErrors(['msg' => 'Incorect email and password']);
+            return redirect(route('login'))->withErrors(['msg' => 'Incorect email and password']);
         }
     }
 

@@ -17,11 +17,13 @@ Route::get('/', function () {
     return view('auth.index', ['data' => $stories]);
 });
 
-Route::get('/login', function () {
+Route::view('/login', 'auth.login')->name('login');
+
+Route::get('/register', function () {
     $address = Province::get();
     $address->load('districts.sectors.cells');
-    return view('auth.login_register', ['address' => $address]);
-})->name('login');
+    return view('auth.register', ['address' => $address]);
+})->name('register');
 
 Route::group(["prefix" => "auth", "as" => "auth."], function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login');
