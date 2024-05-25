@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\UserType;
 use App\Http\Requests\DonationRequest;
 use App\Models\Donation;
+use App\Models\Province;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,9 @@ class DonationController extends Controller
             $donations = Donation::latest()
                 ->where('user_id', Auth::id())
                 ->get();
-            return view('donor.donations', ['data' => $donations]);
+            $address = Province::get();
+            $address->load('districts.sectors.cells');
+            return view('donor.donations', ['data' => $donations, 'address'  => $address]);
         }
     }
 

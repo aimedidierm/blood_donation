@@ -29,7 +29,60 @@
                         class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
                         placeholder="Enter your name" value="{{Auth::user()->name}}" required>
                 </div>
-
+                @if (Auth::user()->type == \App\Enums\UserType::DONOR->value)
+                <div class="flex mb-4 space-x-4">
+                    <div class="mb-4">
+                        <label for="dob" class="block text-gray-700 font-bold mb-2">Date of birth</label>
+                        <input type="text" id="dob" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->dob}}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="blood" class="block text-gray-700 font-bold mb-2">Blood Type</label>
+                        <input type="text" id="blood" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->blood_type}}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="sn" class="block text-gray-700 font-bold mb-2">Donor ID</label>
+                        <input type="text" id="sn" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->sn}}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="sex" class="block text-gray-700 font-bold mb-2">Gender</label>
+                        <input type="text" id="sex" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->sex}}" required>
+                    </div>
+                </div>
+                <div class="flex mb-4 space-x-4">
+                    <div class="mb-4">
+                        <label for="province" class="block text-gray-700 font-bold mb-2">Province</label>
+                        <input type="text" id="province" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->province}}">
+                    </div>
+                    <div class="mb-4">
+                        <label for="district" class="block text-gray-700 font-bold mb-2">District</label>
+                        <input type="text" id="district" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->district}}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="sector" class="block text-gray-700 font-bold mb-2">Sector</label>
+                        <input type="text" id="sector" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->sector}}" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="cell" class="block text-gray-700 font-bold mb-2">Cell</label>
+                        <input type="text" id="cell" disabled
+                            class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+                            value="{{Auth::user()->details->cell}}" required>
+                    </div>
+                </div>
+                @endif
                 <div class="mb-4">
                     <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
                     <input type="email" id="email" name="email" disabled

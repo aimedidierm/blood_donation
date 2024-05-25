@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CollectorsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\StoryController;
 use App\Http\Middleware\CollectorMiddleware;
@@ -52,5 +53,5 @@ Route::group(["prefix" => "donor", "as" => "donor."], function () {
     Route::view('/settings', 'auth.settings');
     Route::put('/settings', [AuthController::class, 'profile']);
     Route::get('/donations', [DonationController::class, 'index']);
-    Route::get('/donate', [DonationController::class, 'index']);
+    Route::post('/donations', [DonationRequestController::class, 'store']);
 })->middleware([DonorMiddleware::class, 'auth']);

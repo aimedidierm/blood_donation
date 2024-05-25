@@ -88,7 +88,7 @@
     <br>
     <div id="default-carousel" class="relative w-full" data-carousel="slide">
         <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-40">
-            <a href="/donor/donate" class="bg-red-500 text-white font-bold py-6 px-10 rounded mt-2">
+            <a href="/donor/donations" class="bg-red-500 text-white font-bold py-6 px-10 rounded mt-2">
                 Donate
             </a>
             <a href="/chatify" class="bg-blue-500 text-white font-bold py-6 px-10 rounded mt-2">
