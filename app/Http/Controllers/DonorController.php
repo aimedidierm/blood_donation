@@ -8,6 +8,7 @@ use App\Models\Donation;
 use App\Models\DonorDetails;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DonorController extends Controller
 {
@@ -69,5 +70,14 @@ class DonorController extends Controller
         }
         $donor->load('user.donations');
         return view('verify', ['data' => $donor]);
+    }
+
+    public function report()
+    {
+        $donations = Donation::get();
+        $donations->load('user.details');
+        // return view('collector.donation_report', ['data' => $donations]);
+        $pdf = Pdf::loadView('collector.donation_report', ['data' => $donations]);
+        return $pdf->download('report.pdf');
     }
 }

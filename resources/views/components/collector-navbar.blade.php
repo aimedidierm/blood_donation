@@ -58,16 +58,22 @@
                 <ul id="dropdown-users" class="hidden py-2 space-y-2">
                     <li>
                         <a href="/collector/donations"
-                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/admins') ? 'bg-gray-400 dark:bg-gray-400' : '' }}">
+                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700">
                             Donations
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="/collector/donations"
-                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700 {{ request()->is('admin/financemanagers') ? 'bg-gray-400 dark:bg-gray-400' : '' }}">
-                            Report
+                    <li>
+                        <a href="/collector/donations-request"
+                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700">
+                            Donations Request
                         </a>
-                    </li> --}}
+                    </li>
+                    <li>
+                        <a href="/collector/donations-approved"
+                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700">
+                            Donations Approved
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li>

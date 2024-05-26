@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CollectorsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DonationApprovedController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\DonorController;
@@ -44,8 +45,12 @@ Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::get('/collectors/delete/{id}', [CollectorsController::class, 'destroy']);
     Route::get('/donors/delete/{id}', [DonorController::class, 'destroy']);
     Route::resource('/donations', DonationController::class)->only('index', 'store');
+    Route::get('/donations-request', [DonationRequestController::class, 'index']);
+    Route::post('/donation-request/approve', [DonationRequestController::class, 'approve']);
     Route::resource('/explore', StoryController::class)->only('index', 'store');
+    Route::resource('/donations-approved', DonationApprovedController::class)->only('index');
     Route::get('/explore/delete/{id}', [StoryController::class, 'destroy']);
+    Route::get('/report/donors', [DonorController::class, 'report']);
 })->middleware([CollectorMiddleware::class]);
 
 Route::group(["prefix" => "donor", "as" => "donor."], function () {
