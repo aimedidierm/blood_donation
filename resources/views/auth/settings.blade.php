@@ -44,7 +44,7 @@
                             value="{{Auth::user()->details->blood_type}}" required>
                     </div>
                     <div class="mb-4">
-                        <label for="sn" class="block text-gray-700 font-bold mb-2">Donor ID</label>
+                        <label for="sn" class="block text-gray-700 font-bold mb-2">Donor Serial Number</label>
                         <input type="text" id="sn" disabled
                             class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
                             value="{{Auth::user()->details->sn}}" required>

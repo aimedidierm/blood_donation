@@ -26,7 +26,7 @@ class AuthController extends Controller
                 if ($user->type == UserType::COLLECTOR->value) {
                     return redirect("/collector/settings");
                 } elseif ($user->type == UserType::DONOR->value) {
-                    return redirect("/donor/settings");
+                    return redirect("/donor/donations");
                 } else {
                     return redirect(route('login'))->withErrors(['msg' => 'Invalid user type']);
                 }
@@ -43,7 +43,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             Auth::logout();
-            return redirect(route("login"));
+            return redirect('/');
         } else {
             return back();
         }
@@ -77,7 +77,7 @@ class AuthController extends Controller
         $donorDetails->user_id = $donor->id;
         $donorDetails->save();
 
-        return redirect()->back();
+        return redirect('/');
     }
 
     public function profile(ProfileRequest $request)

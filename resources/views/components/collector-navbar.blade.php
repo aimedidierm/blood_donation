@@ -14,22 +14,22 @@
     aria-label="Sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
         <ul cass="space-y-2 font-medium">
-            {{-- <li>
-                <a href="/collector"
+            <li>
+                <a href="/"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         dashboard
                     </span>
-                    <span class="ml-3">Dashboard</span>
+                    <span class="ml-3">Homepage</span>
                 </a>
-            </li> --}}
+            </li>
             <li>
                 <a href="/collector/explore"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         article_shortcut
                     </span>
-                    <span class="flex-1 ml-3 whitespace-nowrap">Explore</span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Stories</span>
                 </a>
             </li>
             <li>
@@ -43,7 +43,7 @@
             </li>
             <li>
                 <button type="button"
-                    class="flex items-center w-full p-2 text-base text-white transition duration-75 rounded-lg group hover:text-green-600 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                    class="flex items-center w-full p-2 text-base text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                     aria-controls="dropdown-users" data-collapse-toggle="dropdown-users">
                     <span class="material-symbols-outlined">
                         file_copy
@@ -58,19 +58,19 @@
                 <ul id="dropdown-users" class="hidden py-2 space-y-2">
                     <li>
                         <a href="/collector/donations"
-                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             Donations
                         </a>
                     </li>
                     <li>
                         <a href="/collector/donations-request"
-                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             Donations Request
                         </a>
                     </li>
                     <li>
                         <a href="/collector/donations-approved"
-                            class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 hover:text-green-600 dark:text-white dark:hover:bg-gray-700">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                             Donations Approved
                         </a>
                     </li>
