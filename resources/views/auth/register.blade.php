@@ -124,13 +124,13 @@
                                 placeholder="••••••••" class="w-full border border-gray-300 p-2 rounded mt-1" required>
                         </div>
                     </div>
-                    <button type=" submit" class="w-full bg-blue-500 text-white p-2 rounded">Register</button>
+                    <button type=" submit" class="w-full bg-red-500 text-white p-2 rounded">Register</button>
                 </form>
                 <p class="text-gray-600 text-sm mt-6">already you have an account? <a href="/login"
-                        class="text-blue-500">Login
+                        class="text-red-500">Login
                     </a></p>
             </div>
-            <div class="w-1/2 bg-pattern text-white flex items-center justify-center p-8">
+            <div class="w-1/2 bg-red-600 text-white flex items-center justify-center p-8">
                 <div class="text-center">
                     <h1 class="text-4xl font-bold mb-4">Blood donation information system</h1>
                 </div>

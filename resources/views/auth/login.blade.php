@@ -47,15 +47,15 @@
                         <label for="password" class="block text-gray-700">Password</label>
                         <input type="password" id="password" name="password"
                             class="w-full border border-gray-300 p-2 rounded mt-1" placeholder="Enter your password">
-                        <a href="#" class="text-blue-500 text-sm float-right mt-2">Forgot password?</a>
+                        <a href="#" class="text-red-500 text-sm float-right mt-2">Forgot password?</a>
                     </div>
-                    <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded">Sign in</button>
+                    <button type="submit" class="w-full bg-red-500 text-white p-2 rounded">Sign in</button>
                 </form>
                 <p class="text-gray-600 text-sm mt-6">Don't have an account? <a href="/register"
-                        class="text-blue-500">Create
+                        class="text-red-500">Create
                         one</a></p>
             </div>
-            <div class="w-1/2 bg-pattern text-white flex items-center justify-center p-8">
+            <div class="w-1/2 bg-red-600 text-white flex items-center justify-center p-8">
                 <div class="text-center">
                     <h1 class="text-4xl font-bold mb-4">Blood donation information system</h1>
                 </div>

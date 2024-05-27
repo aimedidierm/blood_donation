@@ -66,7 +66,7 @@ class DonorController extends Controller
         $sn = $request->input('sn');
         $donor = DonorDetails::where('sn', $sn)->first();
         if (!$donor) {
-            return redirect(route('login'))->withErrors('Donor not found');
+            return redirect('/verify')->withErrors('Donor not found');
         }
         $donor->load('user.donations');
         return view('verify', ['data' => $donor]);

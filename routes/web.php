@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $stories = Story::latest()->get();
-    return view('auth.index', ['data' => $stories]);
+    return view('home.home', ['data' => $stories]);
 });
+
+Route::view('/verify', 'auth.verify');
+Route::view('/blood-101', 'home.donation');
+Route::view('/requirements', 'home.requirements');
+Route::view('/schedule', 'home.schedule');
 
 Route::view('/login', 'auth.login')->name('login');
 
