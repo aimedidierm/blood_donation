@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Aimedidierm\IntouchSms\SmsSimple;
+use App\Enums\UserType;
 use App\Http\Requests\DonationRequestApproveRequest;
 use App\Http\Requests\DonationRequestRequest;
 use App\Models\DonationApproved;
@@ -90,7 +91,8 @@ class DonationRequestController extends Controller
 
             $request = DonationRequest::find($donation['id']);
             $request->delete();
-            $message = "Hello $user->name, Your blood donation request approved in $donationApproved->province Province, $donationApproved->district District, $donationApproved->sector Sector, $donationApproved->cell Cell, you must be there on $request->input('date').";
+            $date = $request->input('date');
+            $message = "Hello $user->name, Your blood donation request approved in $donationApproved->province Province, $donationApproved->district District, $donationApproved->sector Sector, $donationApproved->cell Cell, you must be there on $date.";
             $sms = new Sms();
             $sms->recipients($donation['user_phone'])
                 ->message($message)
@@ -118,7 +120,12 @@ class DonationRequestController extends Controller
         if ($donation) {
             $donation->delete();
             session()->flash('success', 'Your donation request had been deleted.');
-            return redirect('/donor/donations-requests');
+            if (Auth::user()->type == UserType::COLLECTOR->value) {
+
+                return redirect('/collector/donations-requests');
+            } else {
+                return redirect('/donor/donations-requests');
+            }
         } else {
             return redirect('/donor/donations-requests')->withErrors('Donation not found');
         }

@@ -55,6 +55,7 @@ Route::group(["prefix" => "collector", "as" => "collector.", 'middleware' => Col
     Route::resource('/donations', DonationController::class)->only('index', 'store');
     Route::get('/donations/delete/{id}', [DonationController::class, 'destroy']);
     Route::get('/donations-request', [DonationRequestController::class, 'index']);
+    Route::get('/donations-request/delete/{id}', [DonationRequestController::class, 'destroy']);
     Route::post('/donation-request/approve', [DonationRequestController::class, 'approve']);
     Route::resource('/explore', StoryController::class)->only('index', 'store');
     Route::resource('/donations-approved', DonationApprovedController::class)->only('index');

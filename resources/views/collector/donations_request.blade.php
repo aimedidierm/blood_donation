@@ -146,6 +146,15 @@
                     Blood Type
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Kg
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Health
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Times
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Province
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -157,12 +166,15 @@
                 <th scope="col" class="px-6 py-3">
                     Cell
                 </th>
+                <th scope="col" class="px-6 py-3">
+
+                </th>
             </tr>
         </thead>
         <tbody>
             @if ($data->isEmpty())
             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th colspan="8" scope="row"
+                <th colspan="12" scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     No data
                 </th>
@@ -183,6 +195,15 @@
                     {{$item->user->details->blood_type}}
                 </td>
                 <td class="px-6 py-4">
+                    {{$item->user->details->kg}}
+                </td>
+                <td class="px-6 py-4">
+                    {{$item->user->details->health}}
+                </td>
+                <td class="px-6 py-4">
+                    {{$item->user->details->times}}
+                </td>
+                <td class="px-6 py-4">
                     {{$item->province}}
                 </td>
                 <td class="px-6 py-4">
@@ -193,6 +214,10 @@
                 </td>
                 <td class="px-6 py-4">
                     {{$item->cell}}
+                </td>
+                <td class="px-6 py-4">
+                    <a href="/collector/donations-request/delete/{{$item->id}}"
+                        class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
                 </td>
             </tr>
             @endforeach

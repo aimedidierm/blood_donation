@@ -113,8 +113,8 @@
                             value="{{Auth::user()->details->cell}}" required>
                     </div>
                     <div class="mb-4">
-                        <label for="kg" class="block text-gray-700 font-bold mb-2">Health</label>
-                        <input type="number" id="kg" disabled
+                        <label for="health" class="block text-gray-700 font-bold mb-2">Health</label>
+                        <input type="text" id="health" disabled
                             class="w-full border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
                             value="{{Auth::user()->details->health}}" required>
                     </div>
