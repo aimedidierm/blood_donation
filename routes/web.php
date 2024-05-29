@@ -43,7 +43,7 @@ Route::group(["prefix" => "auth", "as" => "auth."], function () {
 
 Route::post('/donor-verify', [DonorController::class, 'verify']);
 
-Route::group(["prefix" => "collector", "as" => "collector."], function () {
+Route::group(["prefix" => "collector", "as" => "collector.", 'middleware' => CollectorMiddleware::class], function () {
     Route::get('/', [DashboardController::class, 'collectorDashboard']);
     Route::view('/settings', 'auth.settings');
     Route::put('/settings', [AuthController::class, 'profile']);
@@ -62,9 +62,9 @@ Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::get('/report/donors', [DonorController::class, 'report']);
     Route::get('/announcement', [AnnouncementController::class, 'index']);
     Route::post('/announcement', [AnnouncementController::class, 'store']);
-})->middleware([CollectorMiddleware::class]);
+});
 
-Route::group(["prefix" => "donor", "as" => "donor."], function () {
+Route::group(["prefix" => "donor", "as" => "donor.", 'middleware' => DonorMiddleware::class], function () {
     Route::get('/', [DashboardController::class, 'donorDashboard']);
     Route::view('/settings', 'auth.settings');
     Route::put('/settings', [AuthController::class, 'profile']);
@@ -72,4 +72,4 @@ Route::group(["prefix" => "donor", "as" => "donor."], function () {
     Route::post('/donations', [DonationRequestController::class, 'store']);
     Route::get('/donations-requests', [DonationRequestController::class, 'donor']);
     Route::get('/donations-requests/delete/{id}', [DonationRequestController::class, 'destroy']);
-})->middleware([DonorMiddleware::class, 'auth']);
+});

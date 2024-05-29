@@ -17,13 +17,10 @@ class DonorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->type == UserType::DONOR->value) {
+        if (Auth::check() && Auth::user()->type == UserType::DONOR->value) {
             return $next($request);
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'This action is restricted to donors only.'
-        ], Response::HTTP_UNAUTHORIZED);
+        return redirect('/login')->withErrors('This action is restricted to donors only.');
     }
 }

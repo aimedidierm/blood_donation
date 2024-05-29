@@ -17,13 +17,10 @@ class CollectorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user()->type == UserType::COLLECTOR->value) {
+        if (Auth::check() && Auth::user()->type == UserType::COLLECTOR->value) {
             return $next($request);
         }
 
-        return response()->json([
-            'success' => false,
-            'message' => 'This action is restricted to collectors only.'
-        ], Response::HTTP_UNAUTHORIZED);
+        return redirect('/login')->withErrors('This action is restricted to collectors only.');
     }
 }

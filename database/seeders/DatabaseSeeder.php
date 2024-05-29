@@ -14,12 +14,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'System Collector',
-            'email' => 'admin@test.com',
-            'phone' => '0788750979',
-            'password' => bcrypt('0788750979'),
-            'type' => UserType::COLLECTOR->value,
+        $this->call([
+            AdminSeeder::class,
+            AnnouncementSeeder::class,
+            AddressSeeder::class,
         ]);
     }
 }

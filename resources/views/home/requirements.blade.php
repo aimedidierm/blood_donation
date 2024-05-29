@@ -18,6 +18,9 @@
                     <a href="/chatify" class="text-gray-600 hover:text-gray-800">Chat</a>
                     <a href="/login" class="text-gray-600 hover:text-gray-800">Login</a>
                     <a href="/verify" class="text-gray-600 hover:text-gray-800">Verify</a>
+                    @if(Auth::check() && Auth::user()->type == \App\Enums\UserType::DONOR->value)
+                    <a href="/donor/settings" class="text-gray-600 hover:text-gray-800">Check my status</a>
+                    @endif
                 </div>
             </div>
         </div>
