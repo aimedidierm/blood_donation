@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('sector');
             $table->string('cell');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->on('users')->references('id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
