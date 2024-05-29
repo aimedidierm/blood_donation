@@ -29,6 +29,9 @@ class RegisterRequest extends FormRequest
             'phone' => ['required', 'string', 'unique:users,phone', 'regex:/^07[8|9|3|2][0-9]{7}$/'],
             'gender' => ['required', 'string', Rule::in(array_values((new ReflectionClass(UserSex::class))->getConstants()))],
             'email' => 'required|email|unique:users,email',
+            'kg' => 'required|numeric',
+            'times' => 'required|numeric',
+            'health' => 'required|string',
             'password' => 'required|string|confirmed',
             'password_confirmation' => 'required|string',
         ];

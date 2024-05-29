@@ -21,7 +21,9 @@ class DonationController extends Controller
                 ->get();
             $donations->load('user.details');
             $donors = User::where('type', UserType::DONOR->value)->get();
-            return view('collector.donations', ['data' => $donations, 'donors' => $donors]);
+            $address = Province::get();
+            $address->load('districts.sectors.cells');
+            return view('collector.donations', ['data' => $donations, 'donors' => $donors, 'address' => $address]);
         } else {
             $donations = Donation::latest()
                 ->where('user_id', Auth::id())
@@ -41,6 +43,20 @@ class DonationController extends Controller
         $donation->ml = $request->input('ml');
         $donation->user_id = $request->input('donor');
         $donation->save();
+        session()->flash('success', 'The blood donation has been registered successfully.');
         return redirect('/collector/donations');
+    }
+
+    public function destroy(string $id)
+    {
+        $donation = Donation::find($id);
+
+        if ($donation) {
+            $donation->delete();
+            session()->flash('success', 'The blood donation has been deleted successfully.');
+            return redirect('/collector/donations');
+        } else {
+            return redirect('/collector/donations')->withErrors('Donation not found');
+        }
     }
 }

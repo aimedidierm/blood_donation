@@ -27,6 +27,8 @@
 </head>
 
 <body class="bg-gray-100">
+    <br>
+    <br>
     <div class="min-h-screen flex items-center justify-center">
         <div class="bg-white shadow-lg rounded-lg flex overflow-hidden w-4/5 lg:w-2/3">
             <div class="w-1/2 p-8">
@@ -69,10 +71,30 @@
                             </select>
                         </div>
                     </div>
+                    <div class="flex mb-4 space-x-4">
+                        <div class="w-1/2">
+                            <label for="register_dob" class="block text-gray-700">Your
+                                Date of Birth</label>
+                            <input type="date" name="dob" id="register_dob"
+                                class="w-full border border-gray-300 p-2 rounded mt-1" required>
+                        </div>
+                        <div class="w-1/2">
+                            <label for="kg" class="block text-gray-700">Your
+                                Kg</label>
+                            <input type="number" name="kg" id="kg"
+                                class="w-full border border-gray-300 p-2 rounded mt-1" required>
+                        </div>
+                    </div>
                     <div>
-                        <label for="register_dob" class="block text-gray-700">Your
-                            Date of Birth</label>
-                        <input type="date" name="dob" id="register_dob"
+                        <label for="times" class="block text-gray-700">Your
+                            How many times have you donated?</label>
+                        <input type="number" name="times" id="times"
+                            class="w-full border border-gray-300 p-2 rounded mt-1" required>
+                    </div>
+                    <div>
+                        <label for="health" class="block text-gray-700">Your
+                            Health status</label>
+                        <input type="health" name="health" id="health"
                             class="w-full border border-gray-300 p-2 rounded mt-1" required>
                     </div>
                     <div class=" flex mb-4 space-x-4">
@@ -137,6 +159,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
     <script>
         var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

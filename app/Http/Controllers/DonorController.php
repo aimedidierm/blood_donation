@@ -32,6 +32,7 @@ class DonorController extends Controller
         $singleDonorDetails = DonorDetails::find($donorDetails->id);
         $singleDonorDetails->blood_type = $request->input('editBlood');
         $singleDonorDetails->update();
+        session()->flash('success', 'Donor account has been updated successfully.');
         return redirect('/collector/donors');
     }
 
@@ -55,6 +56,7 @@ class DonorController extends Controller
                 }
             }
             $donor->delete();
+            session()->flash('success', 'Donor account has been deleted successfully.');
             return redirect('/collector/donors');
         } else {
             return redirect('/collector/donors')->withErrors('Donor account not found');
@@ -72,12 +74,50 @@ class DonorController extends Controller
         return view('verify', ['data' => $donor]);
     }
 
-    public function report()
+    public function report(Request $request)
     {
-        $donations = Donation::get();
+        $query = Donation::query();
+
+        if ($request->filled('start_date')) {
+            $query->whereDate('created_at', '>=', $request->input('start_date'));
+        }
+
+        if ($request->filled('end_date')) {
+            $query->whereDate('created_at', '<=', $request->input('end_date'));
+        }
+
+        if ($request->filled('province')) {
+            $query->whereHas('user.details', function ($q) use ($request) {
+                $q->where('province', $request->input('province'));
+            });
+        }
+
+        if ($request->filled('district')) {
+            $query->whereHas('user.details', function ($q) use ($request) {
+                $q->where('district', $request->input('district'));
+            });
+        }
+
+        if ($request->filled('sector')) {
+            $query->whereHas('user.details', function ($q) use ($request) {
+                $q->where('sector', $request->input('sector'));
+            });
+        }
+
+        if ($request->filled('cell')) {
+            $query->whereHas('user.details', function ($q) use ($request) {
+                $q->where('cell', $request->input('cell'));
+            });
+        }
+
+        $donations = $query->get();
         $donations->load('user.details');
-        // return view('collector.donation_report', ['data' => $donations]);
-        $pdf = Pdf::loadView('collector.donation_report', ['data' => $donations]);
+
+        $pdf = Pdf::loadView('collector.donation_report', [
+            'data' => $donations,
+            'filters' => $request->only(['start_date', 'end_date', 'province', 'district', 'sector', 'cell'])
+        ]);
+
         return $pdf->download('report.pdf');
     }
 }

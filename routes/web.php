@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CollectorsController;
 use App\Http\Controllers\DashboardController;
@@ -10,13 +11,15 @@ use App\Http\Controllers\DonorController;
 use App\Http\Controllers\StoryController;
 use App\Http\Middleware\CollectorMiddleware;
 use App\Http\Middleware\DonorMiddleware;
+use App\Models\Announcement;
 use App\Models\Province;
 use App\Models\Story;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $stories = Story::latest()->get();
-    return view('home.home', ['data' => $stories]);
+    $message = Announcement::latest()->first();
+    return view('home.home', ['data' => $stories, 'message' => $message]);
 });
 
 Route::view('/verify', 'auth.verify');
@@ -50,12 +53,15 @@ Route::group(["prefix" => "collector", "as" => "collector."], function () {
     Route::get('/collectors/delete/{id}', [CollectorsController::class, 'destroy']);
     Route::get('/donors/delete/{id}', [DonorController::class, 'destroy']);
     Route::resource('/donations', DonationController::class)->only('index', 'store');
+    Route::get('/donations/delete/{id}', [DonationController::class, 'destroy']);
     Route::get('/donations-request', [DonationRequestController::class, 'index']);
     Route::post('/donation-request/approve', [DonationRequestController::class, 'approve']);
     Route::resource('/explore', StoryController::class)->only('index', 'store');
     Route::resource('/donations-approved', DonationApprovedController::class)->only('index');
     Route::get('/explore/delete/{id}', [StoryController::class, 'destroy']);
     Route::get('/report/donors', [DonorController::class, 'report']);
+    Route::get('/announcement', [AnnouncementController::class, 'index']);
+    Route::post('/announcement', [AnnouncementController::class, 'store']);
 })->middleware([CollectorMiddleware::class]);
 
 Route::group(["prefix" => "donor", "as" => "donor."], function () {
@@ -64,4 +70,6 @@ Route::group(["prefix" => "donor", "as" => "donor."], function () {
     Route::put('/settings', [AuthController::class, 'profile']);
     Route::get('/donations', [DonationController::class, 'index']);
     Route::post('/donations', [DonationRequestController::class, 'store']);
+    Route::get('/donations-requests', [DonationRequestController::class, 'donor']);
+    Route::get('/donations-requests/delete/{id}', [DonationRequestController::class, 'destroy']);
 })->middleware([DonorMiddleware::class, 'auth']);

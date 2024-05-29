@@ -70,6 +70,7 @@ class DonationRequestController extends Controller
             ->callBackUrl("");
         $sms->send();
 
+        session()->flash('success', 'Your blood donation request has been submitted successfully.');
         return redirect('/donor/donations');
     }
 
@@ -101,6 +102,25 @@ class DonationRequestController extends Controller
             $sms->send();
         }
 
+        session()->flash('success', 'A Donor blood donation request had been approved.');
         return redirect('/collector/donations-approved');
+    }
+
+    public function donor()
+    {
+        $donations = DonationRequest::latest()->where('user_id', Auth::id())->get();
+        return view('donor.donation_requests', ['data' => $donations]);
+    }
+
+    public function destroy(string $id)
+    {
+        $donation = DonationRequest::find($id);
+        if ($donation) {
+            $donation->delete();
+            session()->flash('success', 'Your donation request had been deleted.');
+            return redirect('/donor/donations-requests');
+        } else {
+            return redirect('/donor/donations-requests')->withErrors('Donation not found');
+        }
     }
 }

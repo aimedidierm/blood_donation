@@ -29,6 +29,7 @@ class CollectorsController extends Controller
         $collector->type = UserType::COLLECTOR->value;
         $collector->password = bcrypt('password');
         $collector->save();
+        session()->flash('success', 'Colllector account has been registered successfully.');
         return redirect('/collector/collectors');
     }
 
@@ -41,6 +42,7 @@ class CollectorsController extends Controller
 
         if ($collector) {
             $collector->delete();
+            session()->flash('success', 'Collector acount has been deleted successfully.');
             return redirect('/collector/collectors');
         } else {
             return redirect('/collector/collectors')->withErrors('Collector account not found');

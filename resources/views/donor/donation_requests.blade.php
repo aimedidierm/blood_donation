@@ -1,14 +1,12 @@
 @extends('layout')
 
 @section('content')
-<x-collector-navbar />
+<x-donor-navbar />
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Approved Donations</h5>
-
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Your Donation Requests</h5>
         <br>
-
         @if (session('success'))
         <div id="alert-3"
             class="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
@@ -35,24 +33,17 @@
         </div>
         @endif
 
+        @if($errors->any())<span
+            class="self-center text-1xl font-semibold whitespace-nowrap dark:text-red-600">{{$errors->first()}}</span>
+        @endif
+
+        <br>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Approved Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            SN
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Blood Type
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Donation Date
+                            Date
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Province
@@ -66,14 +57,17 @@
                         <th scope="col" class="px-6 py-3">
                             Cell
                         </th>
+                        <th scope="col" class="px-6 py-3">
+
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($data->isEmpty())
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <th colspan="9" scope="row"
+                        <th colspan="6" scope="row"
                             class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            No data
+                            Not yet requested donation
                         </th>
                     </tr>
                     @else
@@ -82,18 +76,6 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{$item->created_at}}
                         </th>
-                        <td class="px-6 py-4">
-                            {{$item->user->name}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$item->user->details->sn}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$item->user->details->blood_type}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$item->date}}
-                        </td>
                         <td class="px-6 py-4">
                             {{$item->province}}
                         </td>
@@ -106,6 +88,10 @@
                         <td class="px-6 py-4">
                             {{$item->cell}}
                         </td>
+                        <td class="px-6 py-4">
+                            <a href="/donor/donations-requests/delete/{{$item->id}}"
+                                class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                        </td>
                     </tr>
                     @endforeach
                     @endif
@@ -114,5 +100,4 @@
         </div>
     </div>
 </div>
-
 @stop

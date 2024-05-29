@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoryRequest;
 use App\Models\Story;
-use Illuminate\Http\Request;
 
 class StoryController extends Controller
 {
@@ -33,6 +32,7 @@ class StoryController extends Controller
         $story->message = $request->input('description');
         $story->show_name = $showName;
         $story->save();
+        session()->flash('success', 'Your story has been registered successfully.');
         return redirect('/collector/explore');
     }
 
@@ -45,6 +45,7 @@ class StoryController extends Controller
 
         if ($story) {
             $story->delete();
+            session()->flash('success', 'Your story has been deleted successfully.');
             return redirect('/collector/explore');
         } else {
             return redirect('/collector/explore')->withErrors('Story not found');

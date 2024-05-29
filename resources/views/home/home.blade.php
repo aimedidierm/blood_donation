@@ -45,12 +45,23 @@
                     can make a significant difference in
                     someone's life. Join us in this
                     lifesaving mission. Donate blood, save lives!</p>
-                <a href="/donor/donations"
-                    class="mt-6 inline-block bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
+                <a href="
+                @if(Auth::check())
+                {{'/donor/donations'}}
+                @else
+                {{'/login'}}
+                @endif
+                " class="mt-6 inline-block bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
                     Donate</a>
             </div>
         </div>
     </section>
+    @if ($message != null)<div class="bg-red-300 bg-opacity-75 p-8 rounded-lg">
+        <h1 class="text-4xl font-bold text-gray-800">Announcement</h1>
+        <p class="mt-4 text-gray-600">
+            {{$message->message}} </p>
+    </div>
+    @endif
     <section class="py-12 bg-white">
         <div class="container mx-auto text-center">
             <h2 class="text-3xl font-bold text-red-600 mb-8">Donate Blood</h2>
