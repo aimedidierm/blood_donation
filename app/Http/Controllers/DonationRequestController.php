@@ -89,8 +89,8 @@ class DonationRequestController extends Controller
             $donationApproved->cell = $donation['cell'];
             $donationApproved->save();
 
-            $request = DonationRequest::find($donation['id']);
-            $request->delete();
+            $donationRequest = DonationRequest::find($donation['id']);
+            $donationRequest->delete();
             $date = $request->input('date');
             $message = "Hello $user->name, Your blood donation request approved in $donationApproved->province Province, $donationApproved->district District, $donationApproved->sector Sector, $donationApproved->cell Cell, you must be there on $date.";
             $sms = new Sms();
