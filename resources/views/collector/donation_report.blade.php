@@ -82,8 +82,8 @@
                 <tr>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->created_at }}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->name }}</td>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->dob }}</td>
-                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->sex }}</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->details->dob }}</td>
+                    <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->details->sex }}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->phone }}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->email }}</td>
                     <td style="padding: 8px; border: 1px solid #0c0c0c;">{{ $donation->user->details->blood_type }}</td>
