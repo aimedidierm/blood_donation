@@ -91,9 +91,9 @@ class AuthController extends Controller
         $user->update();
 
         if (Auth::user()->type == UserType::COLLECTOR->value) {
-            return redirect('/collector/donations-request');
+            return redirect('/collector/setings');
         } else {
-            return redirect('/donations');
+            return redirect('/donor/settings');
         }
     }
 }

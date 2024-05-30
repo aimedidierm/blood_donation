@@ -21,17 +21,17 @@
                     <a href="/" class="text-gray-600 hover:text-gray-800">Home</a>
                     <a href="/chatify" class="text-gray-600 hover:text-gray-800">Chat</a>
                     <a href="/verify" class="text-gray-600 hover:text-gray-800">Verify</a>
-                    @if(Auth::check() && Auth::user()->type == \App\Enums\UserType::DONOR->value)
+                    @if(Auth::check())
                     <a href="
-                    
-                    @if(Auth::user()->type == \App\Enums\UserType::DONOR->value)
-                    {{'/donor/settings'}}
-                    @else
-                    {{'/collector/settings'}}
-                    @endif
-                    " class="text-gray-600 hover:text-gray-800">Check my status</a>
-                    @else<a href="/login" class="text-gray-600 hover:text-gray-800">Login</a>
-                    @endif
+                        @if(Auth::user()->type == \App\Enums\UserType::DONOR->value)
+                        {{'/donor/settings'}}
+                        @else
+                        {{'/collector/settings'}}
+                        @endif
+                    " class="text-gray-600 hover:text-gray-800">Check my status
+                        @else
+                        <a href="/login" class="text-gray-600 hover:text-gray-800">Login</a>
+                        @endif
 
                 </div>
             </div>
