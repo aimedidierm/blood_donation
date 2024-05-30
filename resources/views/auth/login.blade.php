@@ -47,7 +47,6 @@
                         <label for="password" class="block text-gray-700">Password</label>
                         <input type="password" id="password" name="password"
                             class="w-full border border-gray-300 p-2 rounded mt-1" placeholder="Enter your password">
-                        <a href="#" class="text-red-500 text-sm float-right mt-2">Forgot password?</a>
                     </div>
                     <button type="submit" class="w-full bg-red-500 text-white p-2 rounded">Sign in</button>
                 </form>

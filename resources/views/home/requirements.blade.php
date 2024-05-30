@@ -53,8 +53,8 @@
                 <!-- Requirement Item 3 -->
                 <div class="p-4 rounded-lg shadow-lg bg-white">
                     <img src="/images/3.png" alt="Weight" class="mx-auto mb-4">
-                    <h3 class="text-xl font-bold mb-2">Weigh at least 110 lbs</h3>
-                    <p class="text-gray-600">Donors must weigh at least 110 lbs to donate blood.</p>
+                    <h3 class="text-xl font-bold mb-2">Weigh at least 50 Kgs</h3>
+                    <p class="text-gray-600">Donors must weigh at least 50 Kgs to donate blood.</p>
                 </div>
 
                 <!-- Requirement Item 4 -->
