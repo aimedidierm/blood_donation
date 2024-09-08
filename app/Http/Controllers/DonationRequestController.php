@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Aimedidierm\IntouchSms\SmsSimple;
+use Aimedidierm\FdiSms\SendSms;
 use App\Enums\UserType;
 use App\Http\Requests\DonationRequestApproveRequest;
 use App\Http\Requests\DonationRequestRequest;
@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Services\Sms;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class DonationRequestController extends Controller
 {
@@ -59,17 +60,18 @@ class DonationRequestController extends Controller
         $donationRequest->user_id = Auth::id();
         $donationRequest->save();
 
+        $to = Auth::user()->phone;
         $names = Auth::user()->name;
         $message = "Hello $names, Your blood donation request send in $donationRequest->province Province, $donationRequest->district District, $donationRequest->sector Sector, $donationRequest->cell Cell, you can wait to be approved and get appointment.";
-        $sms = new Sms();
-        $sms->recipients(Auth::user()->phone)
-            ->message($message)
-            ->sender(env('SMS_SENDERID'))
-            ->username(env('SMS_USERNAME'))
-            ->password(env('SMS_PASSWORD'))
-            ->apiUrl("www.intouchsms.co.rw/api/sendsms/.json")
-            ->callBackUrl("");
-        $sms->send();
+
+        $apiUsername = env('SMS_USERNAME');
+        $apiPassword = env('SMS_PASSWORD');
+        $senderId = 'FDI';
+        $callbackUrl = '';
+        $ref = Str::random(30);
+        $smsSender = new SendSms($apiUsername, $apiPassword);
+
+        $smsSender->sendSms($to, $message, $senderId, $ref, $callbackUrl);
 
         session()->flash('success', 'Your blood donation request has been submitted successfully.');
         return redirect('/donor/donations');
@@ -93,15 +95,16 @@ class DonationRequestController extends Controller
             $donationRequest->delete();
             $date = $request->input('date');
             $message = "Hello $user->name, Your blood donation request approved in $donationApproved->province Province, $donationApproved->district District, $donationApproved->sector Sector, $donationApproved->cell Cell, you must be there on $date.";
-            $sms = new Sms();
-            $sms->recipients($donation['user_phone'])
-                ->message($message)
-                ->sender(env('SMS_SENDERID'))
-                ->username(env('SMS_USERNAME'))
-                ->password(env('SMS_PASSWORD'))
-                ->apiUrl("www.intouchsms.co.rw/api/sendsms/.json")
-                ->callBackUrl("");
-            $sms->send();
+
+            $apiUsername = env('SMS_USERNAME');
+            $apiPassword = env('SMS_PASSWORD');
+            $senderId = 'FDI';
+            $callbackUrl = '';
+            $ref = Str::random(30);
+            $to = $donation['user_phone'];
+            $smsSender = new SendSms($apiUsername, $apiPassword);
+
+            $smsSender->sendSms($to, $message, $senderId, $ref, $callbackUrl);
         }
 
         session()->flash('success', 'A Donor blood donation request had been approved.');

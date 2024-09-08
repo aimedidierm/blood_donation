@@ -38,7 +38,6 @@ class AuthController extends Controller
         }
     }
 
-    //TODO: test well the working of logout()
     public function logout()
     {
         if (Auth::check()) {
