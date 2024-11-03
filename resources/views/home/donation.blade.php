@@ -13,7 +13,7 @@
     <nav class="bg-white shadow">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold text-red-600">Blood donation information system</div>
+                <div class="text-2xl font-bold text-red-600">{{env('APP_NAME')}}</div>
                 <div class="flex space-x-4">
                     <a href="/" class="text-gray-600 hover:text-gray-800">Home</a>
                     <a href="/chatify" class="text-gray-600 hover:text-gray-800">Chat</a>

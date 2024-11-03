@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blood donation information system</title>
+    <title>{{env('APP_NAME')}}</title>
     <script>
         if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
@@ -154,7 +154,7 @@
             </div>
             <div class="w-1/2 bg-red-600 text-white flex items-center justify-center p-8">
                 <div class="text-center">
-                    <h1 class="text-4xl font-bold mb-4">Blood donation information system</h1>
+                    <h1 class="text-4xl font-bold mb-4">{{env('APP_NAME')}}</h1>
                 </div>
             </div>
         </div>

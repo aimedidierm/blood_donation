@@ -16,7 +16,7 @@
                 @if (Auth::check())
                 <div class="text-2xl font-bold text-grey-600">{{Auth::user()->name}} - </div>
                 @endif
-                <div class="text-2xl font-bold text-red-600">Blood donation information system</div>
+                <div class="text-2xl font-bold text-red-600">{{env('APP_NAME')}}</div>
                 <div class="flex space-x-4">
                     <a href="/" class="text-gray-600 hover:text-gray-800">Home</a>
                     <a href="/chatify" class="text-gray-600 hover:text-gray-800">Chat</a>
@@ -43,7 +43,7 @@
         style="background-image: url('/images/smiling-black-doctor-with-papers.jpg');">
         <div class="container mx-auto h-full flex items-center justify-start">
             <div class="bg-white bg-opacity-75 p-8 rounded-lg">
-                <h1 class="text-4xl font-bold text-gray-800">Blood donation information system</h1>
+                <h1 class="text-4xl font-bold text-gray-800">{{env('APP_NAME')}}</h1>
                 <p class="mt-4 text-gray-600">Every Drop Counts: The Power of Blood Donation
                     Blood donation is vital for saving lives.
                     It supports surgeries, emergency care,
